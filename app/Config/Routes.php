@@ -32,7 +32,17 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Products::index');
+$routes->get('/products', 'Products::index');
+$routes->match(['get','post'],'/products/create', 'Products::create');
+$routes->match(['get','post'],'/products/add/(:any)', 'Products::add/$1');
+$routes->get('/cart', 'Order::index');
+$routes->match(['get','post'],'/cart/create/(:any)', 'Order::create/$1');
+$routes->match(['get','post'],'/cart/remove/(:any)', 'Order::remove/$1');
+$routes->match(['get','post'],'/cart/add', 'Order::add');
+$routes->get('/category', 'Category::index');
+$routes->match(['get','post'],'/category/create', 'Category::create');
+$routes->get('/place', 'Place::index');
 
 /*
  * --------------------------------------------------------------------
